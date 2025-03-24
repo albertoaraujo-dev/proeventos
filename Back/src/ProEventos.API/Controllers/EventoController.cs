@@ -13,26 +13,6 @@ namespace ProEventos.API.Controllers
     [Route("api/[controller]")]
     public class EventoController : ControllerBase
     {
-        public IEnumerable<Evento> _evento = new Evento[]{
-            new Evento(){
-                EventoId = 1,
-                Tema = "Angular 11 e .NET 5",
-                Local = "Belo Horizonte",
-                Lote = "Lote 1",
-                QtdPessoas = 250,
-                DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy"),
-                ImagemURL = "foto.png"
-            },
-            new Evento(){
-                EventoId = 2,
-                Tema = "Angular e suas novidades",
-                Local = "São Paulo",
-                Lote = "Lote 2",
-                QtdPessoas = 350,
-                DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy"),
-                ImagemURL = "foto2.png"
-            }
-        };
         private readonly DataContext _context;
         public EventoController(DataContext context)
         {
@@ -45,6 +25,13 @@ namespace ProEventos.API.Controllers
         {
             return _context.Eventos;
         }
+
+        // [HttpGet("/local/{local}")]
+        // public Evento GetByCity(string local)
+        // {
+        //     return _context.Eventos.FirstOrDefault(evento => evento.Local == local);
+        // }
+
         [HttpGet("{id}")]
         public Evento GetById(int id)
         {
